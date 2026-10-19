@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import Component19 from './Component19';
 
-class Task19 extends React.Component {
+class TAsk19 extends React.Component {
 
   render() {
     return (
@@ -13,4 +13,4 @@ class Task19 extends React.Component {
   }
 }
 
-export default Task19;
+export default TAsk19;
