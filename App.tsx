@@ -1,8 +1,6 @@
 import React from 'react';
-import Task17 from './Tasks/TAsk17';
-import Task18 from './Tasks/TAsk18';
+import TAsk19 from './Tasks/TAsk19';
 
 export default function App() {
-  return <Task18 />;
+  return <TAsk19 />;
 }
-
