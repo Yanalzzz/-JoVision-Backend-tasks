@@ -65,7 +65,21 @@ const removeImage = (id) => {
     setModalVisible(false);
     setImageIndex('');
   };
+const repeatImage = (index) => {
 
+  const selectedImage = images[index];
+
+  const newImage = {
+    ...selectedImage,
+    id: selectedImage.id + '-' + Date.now()
+  };
+
+  const newImages = [...images];
+
+  newImages.splice(index + 1, 0, newImage);
+
+  setImages(newImages);
+};
   return (
     <View style={styles.container}>
      <FlatList
@@ -82,34 +96,49 @@ const removeImage = (id) => {
 
   renderItem={({item, index}) => (
 
-    <View style={styles.imageContainer}>
+  <View style={styles.imageContainer}>
 
-      <Pressable
-        onPress={() =>
-          Alert.alert(
-            'Selected',
-            `You selected image: ${index}`
-          )
-        }
-      >
 
-        <Image
-          source={{uri: item.uri}}
-          style={styles.image}
-        />
+    <Pressable
+      onPress={() =>
+        Alert.alert(
+          'Selected',
+          `You selected image: ${index}`
+        )
+      }
+    >
 
-      </Pressable>
+      <Image
+        source={{uri: item.uri}}
+        style={styles.image}
+      />
 
-      <Pressable
-        style={styles.deleteIcon}
-        onPress={() => removeImage(item.id)}
-      >
-        <Text style={styles.deleteText}>X</Text>
-      </Pressable>
+    </Pressable>
 
-    </View>
 
-  )}
+    <Pressable
+      style={styles.repeatIcon}
+      onPress={() => repeatImage(index)}
+    >
+
+      <Text style={styles.iconText}>+</Text>
+
+    </Pressable>
+
+
+    <Pressable
+      style={styles.deleteIcon}
+      onPress={() => removeImage(item.id)}
+    >
+
+      <Text style={styles.iconText}>X</Text>
+
+    </Pressable>
+
+
+  </View>
+
+)}
 />
 
       <Button title="Show images" onPress={() => setModalVisible(true)} />
