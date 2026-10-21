@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import Component20 from './Component19';
+import Component20 from './Component20';
 
 class TAsk20 extends React.Component {
 
