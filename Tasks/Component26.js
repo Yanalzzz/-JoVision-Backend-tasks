@@ -14,9 +14,7 @@ const Component26= () => {
 
   // Non-blocking request using Promises
   const getIpNonBlocking = () => {
-    fetch('https://api.ipify.org/')
-      .then(response => response.text())
-      .then(data => {
+fetch('https://api.ipify.org/')      .then(data => {
         setIp(data);
       })
       .catch(error => {

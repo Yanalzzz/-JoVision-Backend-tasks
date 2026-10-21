@@ -7,7 +7,7 @@ class TAsk22 extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Component20 />
+        <Component23 />
       </View>
     );
   }

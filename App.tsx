@@ -9,6 +9,7 @@ import Task24 from './Tasks/Task24';
 import Task25 from './Tasks/Task25';
 import Task26 from './Tasks/Task26';
 import Task28 from './Tasks/Task28';
+import Task29 from './Tasks/Task29';
 export default function App() {
-  return <Task28 />;
+  return <Task29 />;
 }
