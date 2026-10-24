@@ -15,7 +15,9 @@ import Task31 from './Tasks/Task31';
 import Task32 from './Tasks/Task32';
 import Task34 from './Tasks/Task34';
 import Task33 from './Tasks/Task33';
+import Task35 from './Tasks/Task35';
+
 export default function App() {
-  return <Task33 />;
+  return <Task35 />;
 
 }
