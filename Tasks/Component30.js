@@ -96,49 +96,34 @@ const repeatImage = (index) => {
 
   renderItem={({item, index}) => (
 
-  <View style={styles.imageContainer}>
+    <View style={styles.imageContainer}>
 
+      <Pressable
+        onPress={() =>
+          Alert.alert(
+            'Selected',
+            `You selected image: ${index}`
+          )
+        }
+      >
 
-    <Pressable
-      onPress={() =>
-        Alert.alert(
-          'Selected',
-          `You selected image: ${index}`
-        )
-      }
-    >
+        <Image
+          source={{uri: item.uri}}
+          style={styles.image}
+        />
 
-      <Image
-        source={{uri: item.uri}}
-        style={styles.image}
-      />
+      </Pressable>
 
-    </Pressable>
+      <Pressable
+        style={styles.deleteIcon}
+        onPress={() => removeImage(item.id)}
+      >
+        <Text style={styles.deleteText}>X</Text>
+      </Pressable>
 
+    </View>
 
-    <Pressable
-      style={styles.repeatIcon}
-      onPress={() => repeatImage(index)}
-    >
-
-      <Text style={styles.iconText}>+</Text>
-
-    </Pressable>
-
-
-    <Pressable
-      style={styles.deleteIcon}
-      onPress={() => removeImage(item.id)}
-    >
-
-      <Text style={styles.iconText}>X</Text>
-
-    </Pressable>
-
-
-  </View>
-
-)}
+  )}
 />
 
       <Button title="Show images" onPress={() => setModalVisible(true)} />

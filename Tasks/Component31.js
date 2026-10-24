@@ -204,9 +204,9 @@ deleteText: {
     justifyContent: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
-    margin: 10,
+    width: 200,
+    height: 200,
+    margin: 15,
   },
   modalBackground: {
     flex: 1,
