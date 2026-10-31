@@ -11,29 +11,30 @@ namespace WebappTasks.Controllers.Task47
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create(
-            [FromForm] IFormFile image,
-            [FromForm] string Owner)
+            [FromForm] CreateImageRequest request)
         {
             try
             {
-                if (image == null || image.Length == 0)
+                if (request.Image == null || request.Image.Length == 0)
                 {
                     return BadRequest("Image is required");
                 }
 
-                if (string.IsNullOrWhiteSpace(Owner))
+                if (string.IsNullOrWhiteSpace(request.Owner))
                 {
                     return BadRequest("Owner is required");
                 }
 
-                string extension = Path.GetExtension(image.FileName).ToLower();
+                string extension =
+                    Path.GetExtension(request.Image.FileName).ToLower();
 
                 if (extension != ".jpg")
                 {
                     return BadRequest("Only JPG images are allowed");
                 }
 
-                string fileName = Path.GetFileName(image.FileName);
+                string fileName =
+                    Path.GetFileName(request.Image.FileName);
 
                 string uploadsFolder = Path.Combine(
                     Directory.GetCurrentDirectory(),
@@ -51,20 +52,22 @@ namespace WebappTasks.Controllers.Task47
 
                 if (System.IO.File.Exists(imagePath))
                 {
-                    return BadRequest("A file with the same name already exists");
+                    return BadRequest(
+                        "A file with the same name already exists"
+                    );
                 }
 
                 using (var stream = new FileStream(
                     imagePath,
                     FileMode.CreateNew))
                 {
-                    await image.CopyToAsync(stream);
+                    await request.Image.CopyToAsync(stream);
                 }
 
                 var metadata = new ImageMetadata
                 {
                     FileName = fileName,
-                    Owner = Owner,
+                    Owner = request.Owner,
                     CreationTime = DateTime.UtcNow,
                     LastModificationTime = DateTime.UtcNow
                 };
@@ -82,10 +85,7 @@ namespace WebappTasks.Controllers.Task47
                     json
                 );
 
-                return StatusCode(
-                    201,
-                    "Created"
-                );
+                return StatusCode(201, "Created");
             }
             catch
             {
